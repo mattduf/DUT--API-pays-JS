@@ -21,6 +21,9 @@
 ::-webkit-scrollbar-thumb:active { background: #7e7e7e; }
 
 body{
+    height: 100%;
+    margin: 0
+    /*
     background-image:url(./images/world-background.jpg);
     background-repeat:no-repeat;
     background-attachment: fixed;
@@ -29,6 +32,7 @@ body{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+     */
 }
 
 h1{
@@ -106,6 +110,8 @@ hr{
     border-radius:10px;
     overflow-y:auto;
     background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    transform:translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .modal_filter{
@@ -181,6 +187,27 @@ table tr:not(:first-child) td{
 .no_idh{
     font-size:1.4em;
     font-style:italic;
+}
+
+#background{
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#background::before{
+    background-image: url(./images/world-background.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
 }
 
 #prevent_scrolling{

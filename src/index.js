@@ -1,6 +1,11 @@
 import _ from 'lodash';
 import "./style.css";
 
+//Background
+let background = document.createElement("div");
+background.id = "background";
+document.body.appendChild(background);
+
 //Titre (h1) de la page
 let pagetitle = document.createElement("h1");
 pagetitle.innerHTML = "Les pays du monde et leur IDH"
