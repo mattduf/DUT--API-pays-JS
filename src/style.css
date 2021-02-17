@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+*{font-family: 'Roboto', sans-serif;}
+
+/* Personnalisation selection */
+::selection { background: rgba(141,214,249,.35); }
+
+/* Personnalisation scrollbar */
+::-webkit-scrollbar { width: 15px; }
+
+::-webkit-scrollbar-track {
+    background: #dddddd;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9d9d9d;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:active { background: #7e7e7e; }
+
+body{
+    background-image:url(./images/world-background.jpg);
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+h1{
+    text-align: center;
+    margin-top:40px;
+}
+
+h2{
+    border-bottom: solid black 1px;
+    margin:20px;
+}
+
+hr{
+    max-width:700px;
+}
+
+.country_container{
+    /*
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-evenly;
+    */
+    max-width:1000px;
+    margin:50px auto;
+    text-align:center;
+}
+
+.country_card{
+    width:200px;
+    height:auto;
+    text-align: center;
+    vertical-align: top;
+    display:inline-block;
+    margin-bottom:30px;
+    cursor:pointer;
+    border-radius:5px;
+    transition:background-color 0.4s, box-shadow 0.4s;
+}
+
+.country_card:hover{
+    background-color:white;
+    border-radius:5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition:background-color 0.4s, box-shadow 0.4s;
+}
+
+.country_card:active{
+    background: rgb(141,214,249);
+    transition:background 0.4s;
+}
+
+.flag{
+    height:60px;
+    margin-top:10px;
+    border:solid lightgrey 1px;
+}
+
+.flag2{
+    height:140px;
+}
+
+.country_name{
+    padding:5px 25px;
+}
+
+.country_modal{
+    position:relative;
+    margin:auto;
+    width:900px;
+    max-width:900px;
+    height:800px;
+    max-height:800px;
+    background-color:white;
+    cursor: default;
+    border-radius:10px;
+    overflow-y:auto;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+.modal_filter{
+    width:100%;
+    height:100%;
+    position:fixed;
+    /*
+    backdrop-filter: grayscale(1);
+    -webkit-backdrop-filter: grayscale(1);
+    */
+    background-color: rgba(0, 0, 0, 0.5);
+    top:0;
+    left:0;
+    cursor: pointer;
+}
+
+.close_modal{
+    font-size:20px;
+    font-weight:bold;
+    position:fixed;
+    padding:5px 15px !important;
+    cursor:pointer;
+    transition:color 0.2s;
+}
+
+.close_modal:hover{
+    color:grey;
+    transition:color 0.2s;
+}
+
+table{
+    margin:0 auto;
+    background-color:rgb(242,242,242);
+}
+
+table td:first-child{
+    font-weight:bold;
+}
+
+table td{
+    text-align: left;
+    width:170px;
+    max-width:170px;
+    vertical-align:top;
+    padding:3px 0;
+}
+
+table tr:not(:first-child) td{
+    padding:5px;
+}
+
+.titre_section_table{
+    text-align: center;
+    font-size:1.2em;
+}
+
+.tGeo{
+    background-color: rgba(226, 173, 25, 0.7);
+}
+
+.tDemo{
+    background-color: rgba(40, 162, 233, 0.7);
+}
+
+.tAdmin{
+    background-color: rgba(212, 77, 77, 0.7);
+}
+
+.tDivers{
+    background-color: rgba(78, 160, 75, 0.7);
+}
+
+.no_idh{
+    font-size:1.4em;
+    font-style:italic;
+}
+
+#prevent_scrolling{
+    height:100vh;
+    overflow-y:hidden;
+}
