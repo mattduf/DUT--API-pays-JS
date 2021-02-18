@@ -256,7 +256,8 @@ xhr.onload = function (e) {
                     modals[i].style.display = "none";
                 }
                 modal_filter.style.display = "flex";
-                document.body.id = "prevent_scrolling";
+                modal.scrollTo(0,0);//Reinitialise la position du scroll si la modale a deja ete ouverte puis scrollée
+                document.body.id = "prevent_scrolling";//Empeche de pouvoir scroller dans le body pdt que la modale est ouverte
             }, false)
 
             //Ferme la modale au clic sur la croix
