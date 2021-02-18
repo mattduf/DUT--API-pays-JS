@@ -235,7 +235,7 @@ xhr.onload = function (e) {
             //Ajoute un titre (h2) pour la section des infos generales
             let title_idh = document.createElement("h2");
             title_idh.innerHTML = "Indice de Développement Humain";
-            title_idh.style.marginTop = "50px";
+            title_idh.style.marginTop = "80px";
             modal.appendChild(title_idh);
 
             //Paragraphe s'il n'y a aucun idh
@@ -283,19 +283,91 @@ xhr.onload = function (e) {
                 if (xhr2.readyState === 4 && xhr2.status === 200) {
                     let code = country.alpha3Code;
                     let Id="137506";
+                    let annees = [];
+                    let idh_annees = [];
+                    let tableIDH;
+                    let containerTableIDH = document.createElement("div");
+                    containerTableIDH.className = "containerTableIDH";
 
                     try {
                         Object.keys(JSON.parse(xhr2.responseText).indicator_value[code][Id]).forEach(function (year) {
-                            //console.log(year+" : "+JSON.parse(xhr2.responseText).indicator_value[code][Id][year]);
+                            no_idh.remove();//Enleve le div qui indique qu'il n'y a aucune donnée
+                            annees.push(year);//Ajoute les années au tableau
+                            idh_annees.push(JSON.parse(xhr2.responseText).indicator_value[code][Id][year]);//Ajoute les idh au tableau
 
-                            no_idh.remove();
-                            let test2 = document.createElement("p");
-                            if (JSON.parse(xhr2.responseText).indicator_value[code][Id][year] > 0.600) test2.style.color = "green";
-                            test2.innerHTML = year + " : " + JSON.parse(xhr2.responseText).indicator_value[code][Id][year];
+                            tableIDH = document.createElement("table");
+                            tableIDH.className = "tableIDH";
+                            let trAnnees = tableIDH.insertRow();
 
-                            modal.appendChild(test2);
+                            for (let i = 0; i < annees.length; i++) {
+                                let cellAnnee = trAnnees.insertCell();
+                                cellAnnee.appendChild(document.createTextNode(annees[i]));
+                            }
 
+                            let trIDH = tableIDH.insertRow();
+
+                            for (let i = 0; i < annees.length; i++) {
+                                let cellIDH = trIDH.insertCell();
+                                cellIDH.appendChild(document.createTextNode(idh_annees[i]));
+
+                                if(idh_annees[i] >= 0.800) cellIDH.style.color = "darkgreen";
+                                else if (idh_annees[i] < 0.800 && idh_annees[i] >= 0.700) cellIDH.style.color = "green";
+                                else if (idh_annees[i] < 0.700 && idh_annees[i] >= 0.555) cellIDH.style.color = "orange";
+                                else if (idh_annees[i] < 0.555) cellIDH.style.color = "red";
+                            }
                         });
+
+                        containerTableIDH.appendChild(tableIDH);
+                        modal.appendChild(containerTableIDH);
+
+                        let container_legende = document.createElement("div");
+                        container_legende.className = "container_legende";
+                        let legende_IDHB = document.createElement("div");
+                        legende_IDHB.className = "legende";
+                        container_legende.appendChild(legende_IDHB);
+                        let color_IDHB = document.createElement("span");
+                        legende_IDHB.appendChild(color_IDHB);
+                        color_IDHB.className = "element_legende color_legende";
+                        color_IDHB.style.backgroundColor = "red";
+                        let label_IDHB = document.createElement("span");
+                        legende_IDHB.appendChild(label_IDHB);
+                        label_IDHB.className = "element_legende label_legende";
+                        label_IDHB.innerHTML = "Bas";
+                        let legende_IDHM = document.createElement("div");
+                        legende_IDHM.className = "legende";
+                        container_legende.appendChild(legende_IDHM);
+                        let color_IDHM = document.createElement("span");
+                        legende_IDHM.appendChild(color_IDHM);
+                        color_IDHM.className = "element_legende color_legende";
+                        color_IDHM.style.backgroundColor = "orange";
+                        let label_IDHM = document.createElement("span");
+                        legende_IDHM.appendChild(label_IDHM);
+                        label_IDHM.className = "element_legende label_legende";
+                        label_IDHM.innerHTML = "Moyen";
+                        let legende_IDHE = document.createElement("div");
+                        legende_IDHE.className = "legende";
+                        container_legende.appendChild(legende_IDHE);
+                        let color_IDHE = document.createElement("span");
+                        legende_IDHE.appendChild(color_IDHE);
+                        color_IDHE.className = "element_legende color_legende";
+                        color_IDHE.style.backgroundColor = "green";
+                        let label_IDHE = document.createElement("span");
+                        legende_IDHE.appendChild(label_IDHE);
+                        label_IDHE.className = "element_legende label_legende";
+                        label_IDHE.innerHTML = "Élevé";
+                        let legende_IDHTE = document.createElement("div");
+                        legende_IDHTE.className = "legende";
+                        container_legende.appendChild(legende_IDHTE);
+                        let color_IDHTE = document.createElement("span");
+                        legende_IDHTE.appendChild(color_IDHTE);
+                        color_IDHTE.className = "element_legende color_legende";
+                        color_IDHTE.style.backgroundColor = "darkgreen";
+                        let label_IDHTE = document.createElement("span");
+                        legende_IDHTE.appendChild(label_IDHTE);
+                        label_IDHTE.className = "element_legende label_legende";
+                        label_IDHTE.innerHTML = "Très élevé";
+
+                        modal.appendChild(container_legende);
                     }catch(err){
                         console.log('Aucun IDH trouvé pour le pays : ' + country.name);
                     }

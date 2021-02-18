@@ -6,7 +6,9 @@
 ::selection { background: rgba(141,214,249,.35); }
 
 /* Personnalisation scrollbar */
-::-webkit-scrollbar { width: 15px; }
+::-webkit-scrollbar {
+    width: 15px;
+}
 
 ::-webkit-scrollbar-track {
     background: #dddddd;
@@ -19,6 +21,10 @@
 }
 
 ::-webkit-scrollbar-thumb:active { background: #7e7e7e; }
+
+.country_modal::-webkit-scrollbar-track {
+    background: transparent;
+}
 
 body{
     height: 100% !important;
@@ -142,16 +148,16 @@ hr{
     transition:color 0.2s;
 }
 
-table{
+table:not(.tableIDH){
     margin:0 auto;
     background-color:rgb(242,242,242);
 }
 
-table td:first-child{
+table:not(.tableIDH) td:first-child{
     font-weight:bold;
 }
 
-table td{
+table:not(.tableIDH) td{
     text-align: left;
     width:170px;
     max-width:170px;
@@ -159,12 +165,12 @@ table td{
     padding:3px 0;
 }
 
-table tr:not(:first-child) td{
+table:not(.tableIDH) tr:not(:first-child) td{
     padding:5px;
 }
 
 .titre_section_table{
-    text-align: center;
+    text-align: center !important;
     font-size:1.2em;
 }
 
@@ -187,6 +193,56 @@ table tr:not(:first-child) td{
 .no_idh{
     font-size:1.4em;
     font-style:italic;
+}
+
+.containerTableIDH{
+    overflow-x:auto;
+    margin: 0 50px 20px;
+}
+
+.tableIDH{
+    margin:0 auto;
+    border-collapse: collapse;
+}
+
+.tableIDH tr:first-child{
+    background-color:lightgrey;
+    font-weight:bold;
+}
+
+.tableIDH td{
+    padding:2px 8px;
+    border:solid grey 1px;
+}
+
+.tableIDH tr:not(:first-child) td{
+    background-color:white;
+}
+
+.container_legende{
+    margin:0 auto 20px;
+}
+
+.legende{
+    margin: auto 15px;
+    display:inline-block;
+}
+
+.element_legende{
+    display:inline-block;
+}
+
+.color_legende{
+    width:30px;
+    height:20px;
+    border:solid lightgrey 1px;
+    opacity:0.7;
+}
+
+.label_legende{
+    vertical-align:top;
+    line-height:23px;
+    padding-left:5px;
 }
 
 #background{
