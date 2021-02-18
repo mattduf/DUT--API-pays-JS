@@ -282,17 +282,22 @@ xhr.onload = function (e) {
                 if (xhr2.readyState === 4 && xhr2.status === 200) {
                     let code = country.alpha3Code;
                     let Id="137506";
-                    Object.keys(JSON.parse(xhr2.responseText).indicator_value[code][Id]).forEach(function(year){
-                        //console.log(year+" : "+JSON.parse(xhr2.responseText).indicator_value[code][Id][year]);
 
-                        no_idh.remove();
-                        let test2 = document.createElement("p");
-                        if(JSON.parse(xhr2.responseText).indicator_value[code][Id][year] > 0.600) test2.style.color = "green";
-                        test2.innerHTML = year+" : "+JSON.parse(xhr2.responseText).indicator_value[code][Id][year];
+                    try {
+                        Object.keys(JSON.parse(xhr2.responseText).indicator_value[code][Id]).forEach(function (year) {
+                            //console.log(year+" : "+JSON.parse(xhr2.responseText).indicator_value[code][Id][year]);
 
-                        modal.appendChild(test2);
+                            no_idh.remove();
+                            let test2 = document.createElement("p");
+                            if (JSON.parse(xhr2.responseText).indicator_value[code][Id][year] > 0.600) test2.style.color = "green";
+                            test2.innerHTML = year + " : " + JSON.parse(xhr2.responseText).indicator_value[code][Id][year];
 
-                    });
+                            modal.appendChild(test2);
+
+                        });
+                    }catch(err){
+                        console.log('Aucun IDH trouvé pour le pays : ' + country.name);
+                    }
                 }
             };
             xhr2.send();
