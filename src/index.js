@@ -310,7 +310,7 @@ xhr.onload = function (e) {
                                 let cellIDH = trIDH.insertCell();
                                 cellIDH.appendChild(document.createTextNode(idh_annees[i]));
 
-                                if(idh_annees[i] >= 0.800) cellIDH.style.color = "darkgreen";
+                                if(idh_annees[i] >= 0.800) cellIDH.style.color = "deepskyblue";
                                 else if (idh_annees[i] < 0.800 && idh_annees[i] >= 0.700) cellIDH.style.color = "green";
                                 else if (idh_annees[i] < 0.700 && idh_annees[i] >= 0.555) cellIDH.style.color = "orange";
                                 else if (idh_annees[i] < 0.555) cellIDH.style.color = "red";
@@ -361,7 +361,7 @@ xhr.onload = function (e) {
                         let color_IDHTE = document.createElement("span");
                         legende_IDHTE.appendChild(color_IDHTE);
                         color_IDHTE.className = "element_legende color_legende";
-                        color_IDHTE.style.backgroundColor = "darkgreen";
+                        color_IDHTE.style.backgroundColor = "deepskyblue";
                         let label_IDHTE = document.createElement("span");
                         legende_IDHTE.appendChild(label_IDHTE);
                         label_IDHTE.className = "element_legende label_legende";
