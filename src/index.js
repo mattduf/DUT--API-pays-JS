@@ -95,10 +95,11 @@ xhr.onload = function (e) {
             let td1SousRegion = trSousRegion.insertCell();
             td1SousRegion.appendChild(document.createTextNode('Sous-région'));
             let td2SousRegion = trSousRegion.insertCell();
-            td2SousRegion.appendChild(document.createTextNode(country.subregion));
+            if(country.subregion.length === 0) td2SousRegion.appendChild(document.createTextNode("Aucune"));
+            else td2SousRegion.appendChild(document.createTextNode(country.subregion));
             let trFrontieres = table.insertRow();
             let td1Frontieres = trFrontieres.insertCell();
-            td1Frontieres.appendChild(document.createTextNode('Frontières'));
+            td1Frontieres.appendChild(document.createTextNode('Frontière(s)'));
             let td2Frontieres = trFrontieres.insertCell();
             let borders = JSON.stringify(country.borders);//Transforme l'objet en string pour permettre le retour à la ligne dans la cellule
             borders = borders.replace(/["\[\]]+/g, '');
@@ -112,7 +113,7 @@ xhr.onload = function (e) {
             td2Superficie.appendChild(document.createTextNode(country.area + " km²"));
             let trFuseaux = table.insertRow();
             let td1Fuseaux = trFuseaux.insertCell();
-            td1Fuseaux.appendChild(document.createTextNode('Fuseaux horaires'));
+            td1Fuseaux.appendChild(document.createTextNode('Fuseau(x) horaire(s)'));
             let td2Fuseaux = trFuseaux.insertCell();
             let fuseaux = JSON.stringify(country.timezones);//Transforme l'objet en string pour permettre le retour à la ligne dans la cellule
             fuseaux = fuseaux.replace(/["\[\]]+/g, '');
@@ -140,7 +141,8 @@ xhr.onload = function (e) {
             let td1Gentile = trGentile.insertCell();
             td1Gentile.appendChild(document.createTextNode('Gentilé'));
             let td2Gentile = trGentile.insertCell();
-            td2Gentile.appendChild(document.createTextNode(country.demonym));
+            if(country.demonym.length === 0) td2Gentile.appendChild(document.createTextNode("Aucun"));
+            else td2Gentile.appendChild(document.createTextNode(country.demonym));
             td2Gentile.style.paddingBottom = "20px";
 
             //Infos administration
@@ -153,7 +155,8 @@ xhr.onload = function (e) {
             let td1Capitale = trCapitale.insertCell();
             td1Capitale.appendChild(document.createTextNode('Capitale'));
             let td2Capitale = trCapitale.insertCell();
-            td2Capitale.appendChild(document.createTextNode(country.capital));
+            if(country.capital.length === 0) td2Capitale.appendChild(document.createTextNode("Aucune"));
+            else td2Capitale.appendChild(document.createTextNode(country.capital));
             let trLang = table.insertRow();
             let td1Lang = trLang.insertCell();
             td1Lang.appendChild(document.createTextNode('Langue(s)'));
@@ -214,7 +217,7 @@ xhr.onload = function (e) {
             td2Domaine.appendChild(document.createTextNode(country.topLevelDomain));
             let trTel = table.insertRow();
             let td1Tel = trTel.insertCell();
-            td1Tel.appendChild(document.createTextNode('Indicatif téléphonique'));
+            td1Tel.appendChild(document.createTextNode('Indicatif(s) téléphonique(s)'));
             let td2Tel = trTel.insertCell();
             if(country.callingCodes.length === 0)
                 td2Tel.appendChild(document.createTextNode("Aucun"));

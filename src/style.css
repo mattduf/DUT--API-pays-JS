@@ -253,3 +253,10 @@ table:not(.tableIDH) tr:not(:first-child) td{
     height:100vh;
     overflow-y:hidden;
 }
+
+@media (max-height:799px) and (min-height:500px){
+    .country_modal{
+        height:500px;
+        max-height:500px;
+    }
+}
