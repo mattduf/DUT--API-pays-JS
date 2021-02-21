@@ -394,65 +394,6 @@ class countries {
             }
         };
         xhr.send();
-
-
-        //----- FOOTER avec documentation -----//
-        let footer = document.createElement("footer");
-        document.body.appendChild(footer);
-
-        let divDoc = document.createElement("div");
-        divDoc.id = "divDocumentation";
-        let h3Doc = document.createElement("h3");
-        h3Doc.innerHTML = "Documentation";
-        divDoc.appendChild(h3Doc);
-        footer.appendChild(divDoc);
-
-        let divAuteurs = document.createElement("div");
-        divAuteurs.innerHTML = "© Copyright Anouar AMIMRI & Mattéo DUFOUR";
-        footer.appendChild(divAuteurs);
-
-        //Ajoute un filtre foncé pour la fenetre modale
-        let modal_filterDOC = document.createElement("div");
-        modal_filterDOC.className = "modal_filter";
-        modal_filterDOC.style.display = "none";
-        country_container.appendChild(modal_filterDOC);
-
-        //Ajoute la fenetre modale qui va contenir les informations du pays
-        let modalDOC = document.createElement("div");
-        modalDOC.className = "country_modal";
-        modal_filterDOC.appendChild(modalDOC);
-
-        //Ajoute une croix pour fermer la fenetre modale
-        let close_modalDOC = document.createElement("div");
-        close_modalDOC.className = "close_modal";
-        close_modalDOC.innerHTML = 'x';
-        modalDOC.appendChild(close_modalDOC);
-
-        //----- Evenements -----
-        /*
-        / Au clic sur une carte :
-        / la boite modale correspondante est affichee,
-        / on empeche l'utilisateur de faire defiler la page
-        */
-        h3Doc.addEventListener("click",function () {
-            modal_filterDOC.style.display = "flex";
-            modalDOC.scrollTo(0,0);//Reinitialise la position du scroll si la modale a deja ete ouverte puis scrollée
-            document.body.id = "prevent_scrolling";//Empeche de pouvoir scroller dans le body pdt que la modale est ouverte
-        }, false)
-
-        //Ferme la modale au clic sur la croix
-        close_modalDOC.addEventListener("click",function () {
-            modal_filterDOC.style.display = "none";
-            document.body.id = "";
-        }, false)
-
-        //Ferme la modale au clic en dehors
-        modal_filterDOC.onclick = function(event) {
-            if (event.target === modal_filterDOC) {
-                modal_filterDOC.style.display = "none";
-                document.body.id = "";
-            }
-        }
     }
 }
 export {countries};
