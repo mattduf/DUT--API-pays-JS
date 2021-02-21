@@ -18,4 +18,4 @@ Dans le cadre du module M4103ip, nous devons développer une application client-
 **ATTENTION : il est impossible d’interagir avec la deuxième API en localhost.** Pour contourner ce problème il faut installer et activer une extension de type CORS Changer (par exemple l’extension Moesif Origin & CORS Changer sur chrome).
 
 ## Présentation du projet
-Les données des deux APIs sont récupérées au moyen de deux requêtes XHR, la deuxième étant dépendant de la première. En effet, nous récupérons dans un premier temps les informations générales des pays, puis nous récupérons les données de l’IDH associé au pays correspondant. 250 pays sont listés. Il faut cliquer sur un pays pour afficher ses informations.
+Les données des deux APIs sont récupérées au moyen de deux requêtes XHR, la deuxième étant dépendante de la première. En effet, nous récupérons dans un premier temps les informations générales des pays, puis nous récupérons les données de l’IDH associé au pays correspondant. 250 pays sont listés. Il faut cliquer sur un pays pour afficher ses informations.
