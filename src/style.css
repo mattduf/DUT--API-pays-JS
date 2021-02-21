@@ -4,9 +4,7 @@
 ::selection { background: rgba(141,214,249,.35); }
 
 /* Personnalisation scrollbar */
-::-webkit-scrollbar {
-    width: 15px;
-}
+::-webkit-scrollbar {width: 15px;}
 
 ::-webkit-scrollbar-track {
     background: #dddddd;
@@ -20,10 +18,9 @@
 
 ::-webkit-scrollbar-thumb:active { background: #7e7e7e; }
 
-.country_modal::-webkit-scrollbar-track {
-    background: transparent;
-}
+.country_modal::-webkit-scrollbar-track {background: transparent;}
 
+/*Style principal*/
 body{
     height: 100% !important;
     margin: 0;
@@ -36,17 +33,15 @@ body{
 h1{
     text-align: center;
     margin-top:40px;
-    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
 h2{
     margin:20px 30px;
-    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
-hr{
-    max-width:700px;
-}
+hr{max-width:700px;}
 
 footer{
     background-color:lightgrey;
@@ -57,6 +52,27 @@ footer{
 footer h3{
     margin:0 0 10px 0;
     cursor:pointer;
+}
+
+/*Background principal*/
+#background{
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#background::before{
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    content: '';
+    height: 104%;
+    left: 0;
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
 }
 
 .country_container{
@@ -80,7 +96,7 @@ footer h3{
 .country_card:hover{
     background-color:white;
     border-radius:5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
     transition:background-color 0.4s, box-shadow 0.4s;
 }
 
@@ -99,9 +115,7 @@ footer h3{
     height:140px;
 }
 
-.country_name{
-    padding:5px 25px;
-}
+.country_name{padding:5px 25px;}
 
 .country_modal{
     position:relative;
@@ -148,9 +162,7 @@ table:not(.tableIDH){
     background-color:rgb(242,242,242);
 }
 
-table:not(.tableIDH) td:first-child{
-    font-weight:bold;
-}
+table:not(.tableIDH) td:first-child{font-weight:bold;}
 
 table:not(.tableIDH) td{
     text-align: left;
@@ -160,30 +172,20 @@ table:not(.tableIDH) td{
     padding:3px 0;
 }
 
-table:not(.tableIDH) tr:not(:first-child) td{
-    padding:5px;
-}
+table:not(.tableIDH) tr:not(:first-child) td{padding:5px;}
 
 .titre_section_table{
     text-align: center !important;
     font-size:1.2em;
 }
 
-.tGeo{
-    background-color: rgba(226, 173, 25, 0.7);
-}
+.tGeo{background-color: rgba(226, 173, 25, 0.7);}
 
-.tDemo{
-    background-color: rgba(40, 162, 233, 0.7);
-}
+.tDemo{background-color: rgba(40, 162, 233, 0.7);}
 
-.tAdmin{
-    background-color: rgba(212, 77, 77, 0.7);
-}
+.tAdmin{background-color: rgba(212, 77, 77, 0.7);}
 
-.tDivers{
-    background-color: rgba(78, 160, 75, 0.7);
-}
+.tDivers{background-color: rgba(78, 160, 75, 0.7);}
 
 .no_idh{
     font-size:1.4em;
@@ -210,29 +212,23 @@ table:not(.tableIDH) tr:not(:first-child) td{
     border:solid grey 1px;
 }
 
-.tableIDH tr:not(:first-child) td{
-    background-color:white;
-}
+.tableIDH tr:not(:first-child) td{background-color:white;}
 
-.container_legende{
-    margin:0 auto 20px;
-}
+.container_legende{margin:0 auto 20px;}
 
 .legende{
     margin: auto 15px;
     display:inline-block;
 }
 
-.element_legende{
-    display:inline-block;
-}
+.element_legende{display:inline-block;}
 
 .color_legende{
     width:30px;
     height:20px;
     border:solid lightgrey 1px;
     opacity:0.7;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
 .label_legende{
@@ -241,34 +237,13 @@ table:not(.tableIDH) tr:not(:first-child) td{
     padding-left:5px;
 }
 
-/*
-#background{
-    min-height: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-#background::before{
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    content: '';
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: -50px;
-    width: 100%;
-    will-change: transform;
-    z-index: -1;
-}
-*/
-
 #prevent_scrolling{
     height:100vh;
     overflow-y:hidden;
 }
 
-@media (max-height:799px) and (min-height:500px){
+/*Ecrans plus petits que 800px de hauteur*/
+@media (max-height:799px){
     .country_modal{
         height:500px;
         max-height:500px;

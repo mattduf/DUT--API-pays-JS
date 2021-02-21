@@ -6,10 +6,13 @@ class countries {
     };
 
     displayCountries(){
-        //Background
-        document.body.style.backgroundImage = "url(" + mainBG + ")";
+        //Background principal
+        document.body.innerHTML = "<style>#background::before{background-image:url(" + mainBG + ");}</style>";//Style ici car impossible de modifier le selecteur ::before en JS
+        let background = document.createElement("div");
+        background.id = "background";
+        document.body.appendChild(background);
 
-//Titre (h1) de la page
+        //Titre (h1) de la page
         let pagetitle = document.createElement("h1");
         pagetitle.innerHTML = "Les pays du monde et leur IDH";
         document.body.appendChild(pagetitle);
@@ -17,19 +20,19 @@ class countries {
         let separation = document.createElement("hr");
         document.body.appendChild(separation);
 
-//Conteneur pour la liste des pays
+        //Conteneur pour la liste des pays
         let country_container = document.createElement("div");
         country_container.className = "country_container";
         document.body.appendChild(country_container);
 
-//Requete XHR qui sollicite la premiere API
+        //Requete XHR qui sollicite la premiere API (infos générales sur les pays)
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://restcountries.eu/rest/v2/all", true);//Asynchrone
 
-//A l'execution de la requete
+        //A l'execution de la requete
         xhr.onload = function (e) {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                let countries = JSON.parse(xhr.responseText);
+                let countries = JSON.parse(xhr.responseText);//Récupération des données
                 countries.forEach(function (country) {
                     //Carte qui va contenir le drapeau et le nom du pays
                     let card = document.createElement("div");
@@ -239,13 +242,13 @@ class countries {
                     //Ajoute le tableau final
                     modal.appendChild(table);
 
-                    //Ajoute un titre (h2) pour la section des infos generales
+                    //Ajoute un titre (h2) pour la section de l'IDH
                     let title_idh = document.createElement("h2");
                     title_idh.innerHTML = "Indice de Développement Humain";
                     title_idh.style.marginTop = "80px";
                     modal.appendChild(title_idh);
 
-                    //Paragraphe s'il n'y a aucun idh
+                    //Paragraphe par défaut s'il n'y a aucun idh
                     let no_idh = document.createElement("p");
                     no_idh.innerHTML = "Aucune donnée.";
                     no_idh.className = "no_idh"
@@ -254,7 +257,7 @@ class countries {
                     //----- Evenements -----
                     /*
                     / Au clic sur une carte :
-                    / la boite modale correspondante est affichee,
+                    / la boite modale correspondante est affichée,
                     / on empeche l'utilisateur de faire defiler la page
                     */
                     card.addEventListener("click",function () {
@@ -275,13 +278,13 @@ class countries {
 
                     //Ferme la modale au clic en dehors
                     modal_filter.onclick = function(event) {
-                        if (event.target == modal_filter) {
+                        if (event.target === modal_filter) {
                             modal_filter.style.display = "none";
                             document.body.id = "";
                         }
                     }
 
-                    //Requete XHR qui sollicite la premiere API
+                    //Requete XHR qui sollicite la deuxième API (infos IDH des pays)
                     var xhr2 = new XMLHttpRequest();
                     xhr2.open("GET", "http://ec2-54-174-131-205.compute-1.amazonaws.com/API/HDRO_API.php/indicator_id=137506", true);
 
@@ -290,15 +293,15 @@ class countries {
                         if (xhr2.readyState === 4 && xhr2.status === 200) {
                             let code = country.alpha3Code;
                             let Id="137506";
-                            let annees = [];
-                            let idh_annees = [];
-                            let tableIDH;
+                            let annees = [];//Tableau contenant les années
+                            let idh_annees = [];//Tableau contenant les IDH
+                            let tableIDH;//Tableau final
                             let containerTableIDH = document.createElement("div");
                             containerTableIDH.className = "containerTableIDH";
 
                             try {
                                 Object.keys(JSON.parse(xhr2.responseText).indicator_value[code][Id]).forEach(function (year) {
-                                    no_idh.remove();//Enleve le div qui indique qu'il n'y a aucune donnée
+                                    no_idh.remove();//Enleve le div qui indique qu'il n'y a aucune donnée si on trouve un IDH pour le pays
                                     annees.push(year);//Ajoute les années au tableau
                                     idh_annees.push(JSON.parse(xhr2.responseText).indicator_value[code][Id][year]);//Ajoute les idh au tableau
 
@@ -317,6 +320,7 @@ class countries {
                                         let cellIDH = trIDH.insertCell();
                                         cellIDH.appendChild(document.createTextNode(idh_annees[i]));
 
+                                        //Coloration des cellules en fonction du niveau d'IDH
                                         if(idh_annees[i] >= 0.800) cellIDH.style.color = "deepskyblue";
                                         else if (idh_annees[i] < 0.800 && idh_annees[i] >= 0.700) cellIDH.style.color = "green";
                                         else if (idh_annees[i] < 0.700 && idh_annees[i] >= 0.555) cellIDH.style.color = "orange";
@@ -324,9 +328,11 @@ class countries {
                                     }
                                 });
 
+                                //Ajoute le tableau final
                                 containerTableIDH.appendChild(tableIDH);
                                 modal.appendChild(containerTableIDH);
 
+                                //Création légende en-dessous du tableau
                                 let container_legende = document.createElement("div");
                                 container_legende.className = "container_legende";
                                 let legende_IDHB = document.createElement("div");
@@ -374,22 +380,23 @@ class countries {
                                 label_IDHTE.className = "element_legende label_legende";
                                 label_IDHTE.innerHTML = "Très élevé";
 
+                                //Ajout de la légende à la modale
                                 modal.appendChild(container_legende);
 
                             }catch(err){
+                                //Si la requête retourne une erreur alors aucunes données existantes pour le pays sur son IDH
                                 console.log('Aucun IDH trouvé pour le pays : ' + country.name);
                             }
                         }
                     };
                     xhr2.send();
-
                 });
             }
         };
         xhr.send();
 
 
-//----- FOOTER avec documentation -----//
+        //----- FOOTER avec documentation -----//
         let footer = document.createElement("footer");
         document.body.appendChild(footer);
 
@@ -404,18 +411,18 @@ class countries {
         divAuteurs.innerHTML = "© Copyright Anouar AMIMRI & Mattéo DUFOUR";
         footer.appendChild(divAuteurs);
 
-//Ajoute un filtre foncé pour la fenetre modale
+        //Ajoute un filtre foncé pour la fenetre modale
         let modal_filterDOC = document.createElement("div");
         modal_filterDOC.className = "modal_filter";
         modal_filterDOC.style.display = "none";
         country_container.appendChild(modal_filterDOC);
 
-//Ajoute la fenetre modale qui va contenir les informations du pays
+        //Ajoute la fenetre modale qui va contenir les informations du pays
         let modalDOC = document.createElement("div");
         modalDOC.className = "country_modal";
         modal_filterDOC.appendChild(modalDOC);
 
-//Ajoute une croix pour fermer la fenetre modale
+        //Ajoute une croix pour fermer la fenetre modale
         let close_modalDOC = document.createElement("div");
         close_modalDOC.className = "close_modal";
         close_modalDOC.innerHTML = 'x';
@@ -441,7 +448,7 @@ class countries {
 
         //Ferme la modale au clic en dehors
         modal_filterDOC.onclick = function(event) {
-            if (event.target == modal_filterDOC) {
+            if (event.target === modal_filterDOC) {
                 modal_filterDOC.style.display = "none";
                 document.body.id = "";
             }

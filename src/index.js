@@ -2,6 +2,7 @@ import "./style.css";
 import roboto from "./font/Roboto-Light.ttf";
 import {countries} from "./countries.js";
 
+//Appelle la méthode countries
 let countriesContent = new countries();
 countriesContent.displayCountries();
 
